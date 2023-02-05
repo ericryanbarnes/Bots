@@ -8,7 +8,7 @@ config();
 
 const GOOGLE_TOKEN = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID;
-const token = process.env.PPSC_DISCORD_TOKEN;
+const TOKEN = process.env.PPSC_DISCORD_;
 const CLIENT_ID = process.env.PPSC_CLIENT_ID;
 const GUILD_ID = process.env.PPSC_GUILD_ID;
 const rest = new REST({ version: "10" }).setToken(token);
@@ -31,7 +31,7 @@ async function main() {
     });
 
     console.log("Successfully reloaded application (/) commands.");
-    client.login(token);
+    client.login(TOKEN);
   } catch (err) {
     console.error(err);
   }
@@ -47,7 +47,7 @@ async function main() {
       const name = options.getString("name");
       const email = options.getString("email");
       const interests = options.getString("interests");
-      const Distro = options.getString("add_to_email_distro");
+      const distro = options.getString("add_to_email_distro");
 
       interaction.reply(`Thank you ${name} for enrolling in the PPSC Cyber Club!\n${name}'s interests are "${interests}".`);
 
@@ -70,7 +70,7 @@ async function main() {
         range: "Sheet1",
         valueInputOption: "USER_ENTERED",
         resource: {
-          values: [[userid, username, name, interests, email, Distro]],
+          values: [[userid, username, name, interests, email, distro]],
         },
       });
     }
